@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--
+================================================================================
+    This file has been generated using Yenlo WSO2 ESB Maven Archetype.
+    For more information: http://www.yenlo.com
+================================================================================
+    -->
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>nl.boontjesit.adapters.wso2-mi-jsonxslt-service</groupId>
+        <artifactId>wso2-mi-jsonxslt-service-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>wso2-mi-jsonxslt-service-test</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>wso2-mi-jsonxslt-service Test project</name>
+    <description>wso2-mi-jsonxslt-service-test Test project</description>
+    <profiles>
+        <!-- One profile per environment -->
+        <profile>
+            <id>mock</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>1.8</version>
+                        <executions>
+                            <execution>
+                                <id>allow-deploy-time-before-test</id>
+                                <phase>pre-integration-test</phase>
+                                <configuration>
+                                    <target>
+                                        <sleep seconds="${pre-test-sleep}"/>
+                                    </target>
+                                </configuration>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.smartbear.soapui</groupId>
+                        <artifactId>soapui-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>

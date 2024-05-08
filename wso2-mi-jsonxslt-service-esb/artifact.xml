@@ -1,0 +1,5 @@
+<artifacts>
+  <artifact name="DemoJsonXsltProxy" groupId="nl.boontjesit.adapters.wso2-mi-jsonxslt-service.proxy-services" serverRole="EnterpriseIntegrator" type="synapse/proxy-service" version="1.0.0-SNAPSHOT">
+    <file>src/main/synapse-config/proxy-services/DemoJsonXsltProxy.xml</file>
+  </artifact>
+</artifacts>

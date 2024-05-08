@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="DemoJsonXsltProxy"
+	xmlns="http://ws.apache.org/ns/synapse" transports="http https" startOnLoad="true" trace="disable">
+	<target>
+		<inSequence>
+			<log level="full">
+				<property name="#### START" value="Enter DemoJsonXslt Service"/>
+			</log>
+
+			<xslt key="gov:nl/boontjesit/adapters/wso2-mi-jsonxslt-service/v1_0/xslt/DemoJsonXslt_v1_0.xslt" />
+			<!-- Make sure that the json from the xslt is actually recognized as json -->
+			<payloadFactory media-type="json">
+				<format>$1</format>
+				<args>
+					<arg evaluator="xml" expression="$body/*"/>
+				</args>
+			</payloadFactory>
+			<property name="messageType" value="application/json" scope="axis2" type="STRING"/>
+
+			<log level="full">
+				<property name="#### END" value="Complete DemoJsonXslt Service"/>
+			</log>
+			<respond/>
+		</inSequence>
+		<outSequence/>
+		<faultSequence/>
+	</target>
+</proxy>

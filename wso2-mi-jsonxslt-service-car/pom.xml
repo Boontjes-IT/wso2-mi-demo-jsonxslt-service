@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>nl.boontjesit.adapters.wso2-mi-jsonxslt-service</groupId>
+    <artifactId>wso2-mi-jsonxslt-service-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>wso2-mi-jsonxslt-service-car</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>carbon/application</packaging>
+  <name>wso2-mi-jsonxslt-service CAR project</name>
+  <description>wso2-mi-jsonxslt-service CAR Project containing CAR deployment artifact</description>
+  <properties>
+    <maven.car.deploy.skip>false</maven.car.deploy.skip>
+    <nl.boontjesit.adapters.wso2-mi-jsonxslt-service.resource_._DemoJsonXslt_v1_0>capp/EnterpriseIntegrator</nl.boontjesit.adapters.wso2-mi-jsonxslt-service.resource_._DemoJsonXslt_v1_0>
+    <nl.boontjesit.adapters.wso2-mi-jsonxslt-service.proxy-service_._DemoJsonXsltProxy>capp/EnterpriseIntegrator</nl.boontjesit.adapters.wso2-mi-jsonxslt-service.proxy-service_._DemoJsonXsltProxy>
+    <nl.boontjesit.adapters.wso2-mi-jsonxslt-service.proxy-service_._ToolsAdapter-beautifyxml_v1_0>capp/EnterpriseIntegrator</nl.boontjesit.adapters.wso2-mi-jsonxslt-service.proxy-service_._ToolsAdapter-beautifyxml_v1_0>
+
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>nl.boontjesit.adapters.wso2-mi-jsonxslt-service.resource</groupId>
+      <artifactId>DemoJsonXslt_v1_0</artifactId>
+      <version>${project.version}</version>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>nl.boontjesit.adapters.wso2-mi-jsonxslt-service.proxy-service</groupId>
+      <artifactId>DemoJsonXsltProxy</artifactId>
+      <version>${project.version}</version>
+      <type>xml</type>
+    </dependency>
+  </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-eclipse-plugin</artifactId>
+        <configuration>
+          <buildcommands />
+          <projectnatures>
+            <projectnature>org.wso2.developerstudio.eclipse.distribution.project.nature</projectnature>
+          </projectnatures>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.wso2.maven</groupId>
+        <artifactId>maven-car-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.wso2.maven</groupId>
+        <artifactId>maven-car-deploy-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+  <profiles>
+    <profile>
+      <id>mock</id>
+      <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+          <plugin>
+            <groupId>org.wso2.maven</groupId>
+            <artifactId>maven-car-deploy-plugin</artifactId>
+            <version>${maven-car-deploy-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>deployThisCar</id>
+                <phase>pre-integration-test</phase>
+                <goals>
+                  <goal>deploy-car</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>
